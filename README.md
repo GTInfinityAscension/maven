@@ -16,4 +16,4 @@ dependencies {
 | --- | --- |
 | `com.raishxn.gtna:gtna` | [GregTech-Nexus-Addon](https://github.com/GTInfinityAscension/GregTech-Nexus-Addon) |
 
-The jars are the exact files attached to each GitHub release (reobfuscated, as players get them). Each mod's `Maven` workflow adds a version when a release is published, through `tools/deploy.py`. A published version is never overwritten.
+The jars are the exact files attached to each GitHub release (reobfuscated, as players get them). Each mod's `Maven` workflow adds a version when a release is published, through `tools/deploy.py`. A published version is never overwritten. Only the newest 5 versions of each artifact are kept (GitHub Pages sites are limited to about 1 GB).

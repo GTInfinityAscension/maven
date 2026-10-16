@@ -52,6 +52,20 @@ def metadata(base: Path, group: str, artifact: str) -> None:
     checksums(out)
 
 
+KEEP = 5
+
+
+def prune(base: Path) -> None:
+    # EN: Pages sites are limited to about 1 GB and GTNA jars are ~50 MB, so only the newest KEEP versions stay.
+    # PT: O Pages tem limite de ~1 GB e o jar do GTNA tem ~50 MB, então só as KEEP versões mais novas ficam.
+    # ZH: Pages 站点约限 1 GB，GTNA 的 jar 约 50 MB，因此只保留最新的 KEEP 个版本。
+    versions = sorted((p for p in base.iterdir() if p.is_dir()),
+                      key=lambda p: [int(x) if x.isdigit() else x for x in p.name.replace("-", ".").split(".")])
+    for old in versions[:-KEEP]:
+        shutil.rmtree(old)
+        print(f"removed old version {old.name}")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("group"), ap.add_argument("artifact"), ap.add_argument("version"), ap.add_argument("jar")
@@ -70,6 +84,7 @@ def main() -> None:
     (target / f"{stem}.pom").write_text(pom(a.group, a.artifact, a.version, a.dep))
     checksums(target / f"{stem}.jar")
     checksums(target / f"{stem}.pom")
+    prune(base)
     metadata(base, a.group, a.artifact)
     print(f"published {a.group}:{a.artifact}:{a.version}")
 
