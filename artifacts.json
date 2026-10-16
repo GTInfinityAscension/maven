@@ -1,3 +1,14 @@
 [
-  { "repo": "GregTech-Nexus-Addon", "group": "com.raishxn.gtna", "artifact": "gtna", "asset": "gtna-{version}.jar" }
+  {
+    "repo": "GregTech-Nexus-Addon",
+    "group": "com.raishxn.gtna",
+    "artifact": "gtna",
+    "asset": "gtna-{version}.jar"
+  },
+  {
+    "repo": "GTIA-Lib",
+    "group": "com.gtinfinityascension",
+    "artifact": "gtialib",
+    "asset": "gtialib-{version}.jar"
+  }
 ]
